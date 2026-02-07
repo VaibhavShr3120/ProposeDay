@@ -1,9 +1,13 @@
-// Redirect to message page
+/* ============================
+   Page Redirect (Home Page)
+============================ */
 function goToMessage() {
   window.location.href = "message.html";
 }
 
-// Floating hearts animation
+/* ============================
+   Floating Hearts Animation
+============================ */
 const heartsContainer = document.getElementById("hearts-container");
 
 function createHeart() {
@@ -25,3 +29,46 @@ function createHeart() {
 }
 
 setInterval(createHeart, 400);
+
+/* ============================
+   Soft Fade-In Background Music
+   (Only on message.html)
+============================ */
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  if (!music) return; // Run only on message page
+
+  music.volume = 0;
+  music.loop = true;
+
+  let fadeInterval;
+
+  function fadeInMusic() {
+    if (!music.paused) return;
+
+    music.play().catch(() => {});
+    let volume = 0;
+
+    fadeInterval = setInterval(() => {
+      if (volume < 0.5) {
+        volume += 0.02;
+        music.volume = volume;
+      } else {
+        music.volume = 0.5;
+        clearInterval(fadeInterval);
+      }
+    }, 200);
+  }
+
+  // Try autoplay on load
+  fadeInMusic();
+
+  // Mobile fallback: play on first user interaction
+  document.body.addEventListener(
+    "click",
+    () => {
+      if (music.paused) fadeInMusic();
+    },
+    { once: true }
+  );
+});
