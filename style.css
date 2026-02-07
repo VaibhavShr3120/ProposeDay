@@ -1,0 +1,168 @@
+/* =======================
+   Global Reset & Base
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  font-size: 16px; /* Base for rem scaling */
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6eb, #ffc0cb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+/* =======================
+   Layout Containers
+======================= */
+.container {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  padding: clamp(16px, 4vw, 32px);
+  animation: fadeIn 1.2s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+/* =======================
+   Headings & Text
+======================= */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #b03060;
+  margin-bottom: 0.5em;
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  color: #8b3a62;
+  margin-bottom: 1.8em;
+  line-height: 1.5;
+}
+
+/* =======================
+   Button Styling
+======================= */
+button {
+  padding: clamp(10px, 3vw, 14px) clamp(22px, 6vw, 36px);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5fa2, #ff8ac9);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 22px rgba(255, 105, 180, 0.8);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =======================
+   Message Card
+======================= */
+.message-card {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: clamp(18px, 4vw, 32px);
+  border-radius: clamp(14px, 4vw, 24px);
+  box-shadow: 0 15px 35px rgba(176, 48, 96, 0.25);
+  animation: slideUp 1s ease;
+}
+
+/* Preserve exact text formatting */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  color: #8b3a62;
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* =======================
+   Floating Hearts
+======================= */
+#hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10vh;
+  color: #ff69b4;
+  opacity: 0.75;
+  animation: floatUp linear infinite;
+}
+
+/* =======================
+   Animations
+======================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(-120vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* =======================
+   Extra Large Screens
+======================= */
+@media (min-width: 1200px) {
+  .message-card {
+    max-width: 800px;
+  }
+}
+
+/* =======================
+   Very Small Devices
+======================= */
+@media (max-width: 360px) {
+  pre {
+    text-align: center;
+  }
+}
